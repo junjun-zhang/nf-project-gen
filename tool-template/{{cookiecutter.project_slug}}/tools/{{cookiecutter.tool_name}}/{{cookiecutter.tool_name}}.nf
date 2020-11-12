@@ -1,6 +1,6 @@
 #!/usr/bin/env nextflow
 
-nextflow.enable.dsl=2  // enable DSL 2
+nextflow.enable.dsl = 2
 version = '{{ cookiecutter.version }}'  // tool version
 
 // universal params go here, change default value as needed
@@ -16,7 +16,7 @@ params.output_pattern = "*.txt"
 
 process {{ cookiecutter.tool_name }} {
   container "quay.io/{{ cookiecutter.quay_io_account }}/{{ cookiecutter.tool_name }}:{{ cookiecutter.tool_name }}.${params.container_version ?: version}"
-  publishDir "${params.publish_dir}/${task.process.replaceAll(':', '_')}", mode "copy", enabled: "${params.publish_dir ? true : ''}"
+  publishDir "${params.publish_dir}/${task.process.replaceAll(':', '_')}", mode: "copy", enabled: "${params.publish_dir ? true : ''}"
 
   cpus params.cpus
   memory "${params.mem} GB"

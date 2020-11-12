@@ -26,8 +26,8 @@ def main():
     if not os.path.isdir(args.output_dir):
         sys.exit('Error: specified output dir %s does not exist or is not accessible!' % args.output_dir)
 
-    with open(os.path.join([args.output_dir, 'input_file_name.txt']), 'w') as f:
-        f.write("The input file name is %s" % args.input_file)
+    with open(os.path.join(args.output_dir, 'input_file_name.txt'), 'w') as f:
+        f.write("The input file name is %s\n" % args.input_file)
 
 
 if __name__ == "__main__":

@@ -4,11 +4,12 @@
  This is an auto-generated checker workflow, please update as needed
 */
 
-nextflow.enable.dsl=2  // enable DSL 2
+nextflow.enable.dsl = 2
 version = '{{ cookiecutter.version }}'  // tool version
 
 // universal params
 params.publish_dir = ""
+params.container_version = ""
 
 // tool specific parmas go here, add / change as needed
 params.input_file = ""
