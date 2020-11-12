@@ -1,8 +1,8 @@
 {
     "full_name": "Junjun Zhang",
     "email": "junjun.ca@gmail.com",
-    "github_username": "junjun-zhang",
-    "project_name": "Demo Nextflow Modules",
+    "github_account": "junjun-zhang",
+    "project_name": "Demo Nextflow Modules 1",
     "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '-') }}",
     "open_source_license": ["MIT", "BSD", "Apache Software License 2.0", "Not open source"]
 }

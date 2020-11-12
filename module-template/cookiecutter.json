@@ -1,7 +1,6 @@
 {
     "full_name": "Junjun Zhang",
     "email": "junjun.ca@gmail.com",
-    "github_username": "junjun-zhang",
     "quay_io_account": "junjun_zhang",
     "module_name": "fastqc",
     "module_version": "0.1.0",

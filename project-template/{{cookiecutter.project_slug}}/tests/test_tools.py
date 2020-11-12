@@ -90,6 +90,6 @@ def test_app(app, rootDir):
         print(stderr, file=sys.stderr)
         assert False, 'Failed with return code: %s; CMD: %s' % (p.returncode, cmd)
     else:
-        if os.path.exists(app_outdir):  # clean up
+        if os.path.exists(app_outdir) and not is_travis:  # clean up
             shutil.rmtree(app_outdir)
         assert True

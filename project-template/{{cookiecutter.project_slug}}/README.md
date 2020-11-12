@@ -1,1 +1,1 @@
-# Nextflow project template
+# {{ cookiecutter.project_name }}
