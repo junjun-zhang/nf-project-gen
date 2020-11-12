@@ -3,33 +3,41 @@
 import os
 import argparse
 from cookiecutter.main import cookiecutter
+from cookiecutter.config import get_user_config
+from cookiecutter.replay import load
 
 GEN_HOME = os.path.dirname(os.path.realpath(__file__))
 
 
-def main(gen_type):
+def template_gen(template_name, config_dict):
+    print('*** Gather information to generate Nextflow %s ***' % template_name.replace('-', ' '))
+    project_dir = cookiecutter(os.path.join(GEN_HOME, template_name))
+
+    project_context = load(config_dict['replay_dir'], template_name)
+    print('Template generated in: %s\n' % project_dir)
+
+    return project_dir, project_context
+
+
+def main(gen_type, commit=False, config_file=None):
     project_dir = ''
     module_dir = ''
     cwd = os.getcwd()
 
-    if gen_type in ('p', 'pm'):
-        print('*** Gather information to generate Nextflow project template ***')
-        project_dir = cookiecutter('%s/project-template/' % GEN_HOME)
+    config_dict = get_user_config(config_file=config_file)
 
-    if project_dir:
-        print('Nextflow project template generated in: %s\n' % project_dir)
+    if gen_type in ('p', 'pm'):
+        project_dir, project_context = template_gen('project-template', config_dict)
+        # print(project_context)
 
     if gen_type in ('pm', 'm'):
         if project_dir:
             os.chdir(os.path.join(project_dir, 'tools'))
 
-        print('*** Gather information to generate Nextflow module template ***')
-        module_dir = cookiecutter('%s/module-template/' % GEN_HOME)
+        module_dir, module_context = template_gen('module-template', config_dict)
+        # print(module_context)
 
         os.chdir(cwd)
-
-    if module_dir:
-        print('Nextflow module template generated in: %s' % module_dir)
 
 
 if __name__ == "__main__":
@@ -38,6 +46,14 @@ if __name__ == "__main__":
                         choices=['p', 'pm', 'm'], required=True,
                         help='Specify type of template to generate, available options: '
                              'p - project; pm - project and module; m - module')
+    parser.add_argument('-a', '--auto-commit', dest='commit', action='store_true',
+                        help='Perform git commit after template generated')
+    parser.add_argument('-c', '--config-file', dest='config_file',
+                        help='User configuration file path')
     args = parser.parse_args()
 
-    main(args.gen_type)
+    main(
+        gen_type=args.gen_type,
+        commit=args.commit,
+        config_file=args.config_file
+    )
