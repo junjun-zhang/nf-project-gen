@@ -1,6 +1,6 @@
 {
     "input_file": "input/README.md",
-    "expected_output": "expected/input_file_name.txt",
+    "expected_output": "expected/expected.input_file_name.txt",
     "publish_dir": "outdir",
     "cpus": 1,
     "mem": 0.5

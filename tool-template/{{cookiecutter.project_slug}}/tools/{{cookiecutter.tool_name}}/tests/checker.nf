@@ -4,7 +4,7 @@
  This is an auto-generated checker workflow, please update as needed
 */
 
-nextflow.enable.dsl = 2  // enable DSL 2
+nextflow.enable.dsl=2  // enable DSL 2
 version = '{{ cookiecutter.version }}'  // tool version
 
 // universal params
@@ -29,13 +29,11 @@ process file_diff {
     path file2
 
   output:
-    stdout out
+    stdout()
 
   script:
     """
-    diff ${file1} ${file2}
-
-    echo $?
+    diff ${file1} ${file2} && exit 0 || ( echo "Test failed, output file mismatch." && exit 1 )
     """
 }
 
@@ -54,12 +52,6 @@ workflow checker {
       {{ cookiecutter.tool_name }}.out.output,
       expected_output
     )
-
-    if (file_diff.out.out == '0') {
-      exit 0, "Test PASS"
-    } else {
-      exit 1, "Test FAILED"
-    }
 }
 
 

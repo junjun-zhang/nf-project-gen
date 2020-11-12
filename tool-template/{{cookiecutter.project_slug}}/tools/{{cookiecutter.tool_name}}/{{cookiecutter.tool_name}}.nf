@@ -1,6 +1,6 @@
 #!/usr/bin/env nextflow
 
-nextflow.enable.dsl = 2  // enable DSL 2
+nextflow.enable.dsl=2  // enable DSL 2
 version = '{{ cookiecutter.version }}'  // tool version
 
 // universal params go here, change default value as needed

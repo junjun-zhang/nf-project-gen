@@ -6,7 +6,7 @@
     "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '-') }}",
     "project_short_description": "A collection of Nextflow demo tools",
     "quay_io_account": "junjun_zhang",
-    "docker_base_image": "quay.io/biocontainers/fastqc",
+    "docker_base_image": "pegi3s/fastqc:0.11.9",
     "tool_name": "fastqc",
     "version": "0.1.0",
     "open_source_license": ["MIT", "BSD", "Apache Software License 2.0", "Not open source"]

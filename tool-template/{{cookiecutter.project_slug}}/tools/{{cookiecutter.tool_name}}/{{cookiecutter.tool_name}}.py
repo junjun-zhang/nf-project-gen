@@ -20,7 +20,7 @@ def main():
                         help='Output directory', required=True)
     args = parser.parse_args()
 
-    if not os.path.isdir(args.input_file):
+    if not os.path.isfile(args.input_file):
         sys.exit('Error: specified input file %s does not exist or is not accessible!' % args.input_file)
 
     if not os.path.isdir(args.output_dir):
