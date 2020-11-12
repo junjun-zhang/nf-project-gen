@@ -8,12 +8,12 @@ import argparse
 
 def main():
     """
-    Python implementation of tool: {{ cookiecutter.tool_name }}
+    Python implementation of tool: {{ cookiecutter.module_name }}
 
     This is auto-generated Python code, please update as needed!
     """
 
-    parser = argparse.ArgumentParser(description='Tool: {{ cookiecutter.tool_name }}')
+    parser = argparse.ArgumentParser(description='Tool: {{ cookiecutter.module_name }}')
     parser.add_argument('-i', '--input-file', dest='input_file', type=str,
                         help='Input file', required=True)
     parser.add_argument('-o', '--output-dir', dest='output_dir', type=str,

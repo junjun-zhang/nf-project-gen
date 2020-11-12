@@ -1,7 +1,7 @@
 #!/usr/bin/env nextflow
 
 nextflow.enable.dsl = 2
-version = '{{ cookiecutter.version }}'  // tool version
+version = '{{ cookiecutter.module_version }}'  // tool version
 
 // universal params go here, change default value as needed
 params.container_version = ""
@@ -14,8 +14,8 @@ params.input_file = ""
 params.output_pattern = "*.txt"
 
 
-process {{ cookiecutter.tool_name }} {
-  container "quay.io/{{ cookiecutter.quay_io_account }}/{{ cookiecutter.tool_name }}:{{ cookiecutter.tool_name }}.${params.container_version ?: version}"
+process {{ cookiecutter.module_name }} {
+  container "quay.io/{{ cookiecutter.quay_io_account }}/{{ cookiecutter.module_name }}:{{ cookiecutter.module_name }}.${params.container_version ?: version}"
   publishDir "${params.publish_dir}/${task.process.replaceAll(':', '_')}", mode: "copy", enabled: "${params.publish_dir ? true : ''}"
 
   cpus params.cpus
@@ -33,7 +33,7 @@ process {{ cookiecutter.tool_name }} {
     """
     mkdir -p output_dir
 
-    {{ cookiecutter.tool_name }}.py \
+    {{ cookiecutter.module_name }}.py \
       -i ${input_file} \
       -o output_dir
 

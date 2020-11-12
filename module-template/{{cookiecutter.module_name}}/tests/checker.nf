@@ -5,7 +5,7 @@
 */
 
 nextflow.enable.dsl = 2
-version = '{{ cookiecutter.version }}'  // tool version
+version = '{{ cookiecutter.module_version }}'  // tool version
 
 // universal params
 params.publish_dir = ""
@@ -15,7 +15,7 @@ params.container_version = ""
 params.input_file = ""
 params.expected_output = ""
 
-include { {{ cookiecutter.tool_name }} } from '../{{ cookiecutter.tool_name }}'
+include { {{ cookiecutter.module_name }} } from '../{{ cookiecutter.module_name }}'
 
 Channel
   .fromPath(params.input_file, checkIfExists: true)
@@ -23,7 +23,7 @@ Channel
 
 
 process file_diff {
-  container "quay.io/{{ cookiecutter.quay_io_account }}/{{ cookiecutter.tool_name }}:{{ cookiecutter.tool_name }}.${params.container_version ?: version}"
+  container "quay.io/{{ cookiecutter.quay_io_account }}/{{ cookiecutter.module_name }}:{{ cookiecutter.module_name }}.${params.container_version ?: version}"
 
   input:
     path file1
@@ -34,7 +34,7 @@ process file_diff {
 
   script:
     """
-    diff ${file1} ${file2} && exit 0 || ( echo "Test failed, output file mismatch." && exit 1 )
+    diff ${file1} ${file2} && ( echo "Test PASSED" && exit 0 ) || ( echo "Test FAILED, output file mismatch." && exit 1 )
     """
 }
 
@@ -45,12 +45,12 @@ workflow checker {
     expected_output
 
   main:
-    {{ cookiecutter.tool_name }}(
+    {{ cookiecutter.module_name }}(
       input_file
     )
 
     file_diff(
-      {{ cookiecutter.tool_name }}.out.output,
+      {{ cookiecutter.module_name }}.out.output,
       expected_output
     )
 }
