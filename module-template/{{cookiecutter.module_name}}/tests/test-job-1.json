@@ -1,6 +1,6 @@
 {
-    "input_file": "input/README.md",
-    "expected_output": "expected/expected.input_file_name.txt",
+    "input_file": "input/test_rg_3.bam",
+    "expected_output": "expected/expected.test_rg_3_fastqc.html",
     "publish_dir": "outdir",
     "cpus": 1,
     "mem": 0.5

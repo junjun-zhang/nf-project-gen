@@ -11,7 +11,7 @@ params.publish_dir = ""  // set to empty string will disable publishDir
 
 // tool specific parmas go here, add / change as needed
 params.input_file = ""
-params.output_pattern = "*.txt"
+params.output_pattern = "*.html"  // fastqc output html report
 
 
 process {{ cookiecutter.module_name }} {

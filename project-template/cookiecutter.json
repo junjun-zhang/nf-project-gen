@@ -4,5 +4,6 @@
     "github_account": "junjun-zhang",
     "project_name": "Demo Nextflow Modules 1",
     "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '-') }}",
+    "_copy_without_render": ["*.html"],
     "open_source_license": ["MIT", "BSD", "Apache Software License 2.0", "Not open source"]
 }

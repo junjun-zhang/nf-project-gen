@@ -62,10 +62,8 @@ def test_app(app, rootDir):
     os.chdir(os.path.join(rootDir, test_dir))
 
     app_outdir = 'outdir'
-    if os.path.exists(app_outdir):  # remove if exist
-        shutil.rmtree(app_outdir)
 
-    os.makedirs(app_outdir)
+    os.makedirs(app_outdir, exist_ok=True)
 
     if app_file_name.endswith('.cwl'):
         cmd = "cwltool --non-strict --no-read-only --outdir %s %s %s" % \
@@ -90,6 +88,4 @@ def test_app(app, rootDir):
         print(stderr, file=sys.stderr)
         assert False, 'Failed with return code: %s; CMD: %s' % (p.returncode, cmd)
     else:
-        if os.path.exists(app_outdir) and not is_travis:  # clean up
-            shutil.rmtree(app_outdir)
         assert True
